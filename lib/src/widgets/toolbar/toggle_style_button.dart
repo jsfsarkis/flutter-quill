@@ -10,7 +10,7 @@ import '../toolbar.dart';
 typedef ToggleStyleButtonBuilder = Widget Function(
   BuildContext context,
   Attribute attribute,
-  IconData icon,
+  Widget icon,
   Color? fillColor,
   bool? isToggled,
   VoidCallback? onPressed,
@@ -35,7 +35,7 @@ class ToggleStyleButton extends StatefulWidget {
 
   final Attribute attribute;
 
-  final IconData icon;
+  final Widget icon;
   final double iconSize;
 
   final Color? fillColor;
@@ -105,8 +105,7 @@ class _ToggleStyleButtonState extends State<ToggleStyleButton> {
   }
 
   bool _getIsToggled(Map<String, Attribute> attrs) {
-    if (widget.attribute.key == Attribute.list.key ||
-        widget.attribute.key == Attribute.script.key) {
+    if (widget.attribute.key == Attribute.list.key || widget.attribute.key == Attribute.script.key) {
       final attribute = attrs[widget.attribute.key];
       if (attribute == null) {
         return false;
@@ -117,16 +116,14 @@ class _ToggleStyleButtonState extends State<ToggleStyleButton> {
   }
 
   void _toggleAttribute() {
-    widget.controller.formatSelection(_isToggled!
-        ? Attribute.clone(widget.attribute, null)
-        : widget.attribute);
+    widget.controller.formatSelection(_isToggled! ? Attribute.clone(widget.attribute, null) : widget.attribute);
   }
 }
 
 Widget defaultToggleStyleButtonBuilder(
   BuildContext context,
   Attribute attribute,
-  IconData icon,
+  Widget icon,
   Color? fillColor,
   bool? isToggled,
   VoidCallback? onPressed,
@@ -138,24 +135,19 @@ Widget defaultToggleStyleButtonBuilder(
   final isEnabled = onPressed != null;
   final iconColor = isEnabled
       ? isToggled == true
-          ? (iconTheme?.iconSelectedColor ??
-              theme
-                  .primaryIconTheme.color) //You can specify your own icon color
+          ? (iconTheme?.iconSelectedColor ?? theme.primaryIconTheme.color) //You can specify your own icon color
           : (iconTheme?.iconUnselectedColor ?? theme.iconTheme.color)
       : (iconTheme?.disabledIconColor ?? theme.disabledColor);
   final fill = isEnabled
       ? isToggled == true
-          ? (iconTheme?.iconSelectedFillColor ??
-              Theme.of(context).primaryColor) //Selected icon fill color
-          : (iconTheme?.iconUnselectedFillColor ??
-              theme.canvasColor) //Unselected icon fill color :
-      : (iconTheme?.disabledIconFillColor ??
-          (fillColor ?? theme.canvasColor)); //Disabled icon fill color
+          ? (iconTheme?.iconSelectedFillColor ?? Theme.of(context).primaryColor) //Selected icon fill color
+          : (iconTheme?.iconUnselectedFillColor ?? theme.canvasColor) //Unselected icon fill color :
+      : (iconTheme?.disabledIconFillColor ?? (fillColor ?? theme.canvasColor)); //Disabled icon fill color
   return QuillIconButton(
     highlightElevation: 0,
     hoverElevation: 0,
     size: iconSize * kIconButtonFactor,
-    icon: Icon(icon, size: iconSize, color: iconColor),
+    icon: icon,
     fillColor: fill,
     onPressed: onPressed,
     afterPressed: afterPressed,
