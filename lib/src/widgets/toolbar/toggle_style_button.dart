@@ -156,7 +156,7 @@ Widget defaultToggleStyleButtonBuilder(
     padding: const EdgeInsets.only(left: 14, right: 14),
     height: 48,
     decoration: BoxDecoration(
-      color: selectedColor,
+      color: fill,
       borderRadius: const BorderRadius.all(Radius.circular(7)),
     ),
     child: QuillIconButton(
