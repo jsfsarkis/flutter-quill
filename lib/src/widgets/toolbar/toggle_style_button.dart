@@ -152,14 +152,22 @@ Widget defaultToggleStyleButtonBuilder(
           ? selectedColor
           : unselectedColor
       : disabledColor;
-  return QuillIconButton(
-    highlightElevation: 0,
-    hoverElevation: 0,
-    size: iconSize * kIconButtonFactor,
-    icon: icon,
-    fillColor: fill,
-    onPressed: onPressed,
-    afterPressed: afterPressed,
-    borderRadius: iconTheme?.borderRadius ?? 2,
+  return Container(
+    padding: const EdgeInsets.only(left: 14, right: 14),
+    height: 48,
+    decoration: BoxDecoration(
+      color: selectedColor,
+      borderRadius: const BorderRadius.all(Radius.circular(7)),
+    ),
+    child: QuillIconButton(
+      highlightElevation: 0,
+      hoverElevation: 0,
+      size: iconSize * kIconButtonFactor,
+      icon: icon,
+      fillColor: fill,
+      onPressed: onPressed,
+      afterPressed: afterPressed,
+      borderRadius: iconTheme?.borderRadius ?? 2,
+    ),
   );
 }
