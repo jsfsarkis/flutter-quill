@@ -124,6 +124,9 @@ Widget defaultToggleStyleButtonBuilder(
   BuildContext context,
   Attribute attribute,
   Widget icon,
+  Color selectedColor,
+  Color unselectedColor,
+  Color disabledColor,
   Color? fillColor,
   bool? isToggled,
   VoidCallback? onPressed,
@@ -133,16 +136,11 @@ Widget defaultToggleStyleButtonBuilder(
 ]) {
   final theme = Theme.of(context);
   final isEnabled = onPressed != null;
-  final iconColor = isEnabled
-      ? isToggled == true
-          ? (iconTheme?.iconSelectedColor ?? theme.primaryIconTheme.color) //You can specify your own icon color
-          : (iconTheme?.iconUnselectedColor ?? theme.iconTheme.color)
-      : (iconTheme?.disabledIconColor ?? theme.disabledColor);
   final fill = isEnabled
       ? isToggled == true
-          ? (iconTheme?.iconSelectedFillColor ?? Theme.of(context).primaryColor) //Selected icon fill color
-          : (iconTheme?.iconUnselectedFillColor ?? theme.canvasColor) //Unselected icon fill color :
-      : (iconTheme?.disabledIconFillColor ?? (fillColor ?? theme.canvasColor)); //Disabled icon fill color
+          ? selectedColor
+          : unselectedColor
+      : disabledColor;
   return QuillIconButton(
     highlightElevation: 0,
     hoverElevation: 0,
