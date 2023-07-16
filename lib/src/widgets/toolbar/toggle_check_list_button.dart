@@ -21,7 +21,7 @@ class ToggleCheckListButton extends StatefulWidget {
     Key? key,
   }) : super(key: key);
 
-  final IconData icon;
+  final Widget icon;
   final double iconSize;
 
   final Color? fillColor;
@@ -47,8 +47,7 @@ class _ToggleCheckListButtonState extends State<ToggleCheckListButton> {
 
   void _didChangeEditingValue() {
     setState(() {
-      _isToggled =
-          _getIsToggled(widget.controller.getSelectionStyle().attributes);
+      _isToggled = _getIsToggled(widget.controller.getSelectionStyle().attributes);
     });
   }
 
@@ -72,8 +71,7 @@ class _ToggleCheckListButtonState extends State<ToggleCheckListButton> {
     if (attribute == null) {
       return false;
     }
-    return attribute.value == Attribute.unchecked.value ||
-        attribute.value == Attribute.checked.value;
+    return attribute.value == Attribute.unchecked.value || attribute.value == Attribute.checked.value;
   }
 
   @override
@@ -111,8 +109,6 @@ class _ToggleCheckListButtonState extends State<ToggleCheckListButton> {
   }
 
   void _toggleAttribute() {
-    widget.controller.formatSelection(_isToggled!
-        ? Attribute.clone(Attribute.unchecked, null)
-        : Attribute.unchecked);
+    widget.controller.formatSelection(_isToggled! ? Attribute.clone(Attribute.unchecked, null) : Attribute.unchecked);
   }
 }

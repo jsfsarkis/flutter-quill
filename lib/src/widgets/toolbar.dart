@@ -468,7 +468,8 @@ class QuillToolbar extends StatelessWidget implements PreferredSizeWidget {
             attribute: Attribute.unchecked,
             tooltip: buttonTooltips[ToolbarButtons.listChecks],
             controller: controller,
-            icon: Icons.check_box,
+            icon: const Icon(Icons.check_box, size: kDefaultIconSize),
+
             iconSize: toolbarIconSize,
             iconTheme: iconTheme,
             afterButtonPressed: afterButtonPressed,
